@@ -1,3 +1,6 @@
 .main_div{
     margin: 10%;
 }
+.errorDiv{
+    color: red;
+}

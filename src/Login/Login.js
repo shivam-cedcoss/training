@@ -9,7 +9,7 @@ import { Spinner } from "@shopify/polaris";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
-  const { fetchApi, loading, status } = Fetch();
+  const { fetchApi, loading, status, errorMsg } = Fetch();
   // Login function
   const userLogin = () => {
     let url = new URL(
@@ -17,12 +17,20 @@ const Login = (props) => {
     );
     let token =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsInJvbGUiOiJhcHAiLCJpYXQiOjE1MzkwNTk5NzgsImlzcyI6Imh0dHBzOlwvXC9hcHBzLmNlZGNvbW1lcmNlLmNvbSIsImF1ZCI6ImV4YW1wbGUuY29tIiwibmJmIjoxNTM5MDU5OTc4LCJ0b2tlbl9pZCI6MTUzOTA1OTk3OH0.GRSNBwvFrYe4H7FBkDISVee27fNfd1LiocugSntzxAUq_PIioj4-fDnuKYh-WHsTdIFMHIbtyt-uNI1uStVPJQ4K2oYrR_OmVe5_zW4fetHyFmoOuoulR1htZlX8pDXHeybRMYlkk95nKZZAYQDB0Lpq8gxnTCOSITTDES0Jbs9MENwZWVLfyZk6vkMhMoIAtETDXdElIdWjP6W_Q1kdzhwqatnUyzOBTdjd_pt9ZkbHHYnv6gUWiQV1bifWpMO5BYsSGR-MW3VzLqsH4QetZ-DC_AuF4W2FvdjMRpHrsCgqlDL4I4ZgHJVp-iXGfpug3sJKx_2AJ_2aT1k5sQYOMA";
-    fetchApi(url, token);
+
+    var options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: token,
+      },
+    };
+    fetchApi(url, options);
   };
   useEffect(() => {
     props.dispatch(checkLogin(status));
   }, [loading]);
-  console.log(props.selector)
+  // console.log(status,errorMsg)
   return (
     <>
       {props.selector && <Navigate to="/product" replace={true} />}
@@ -45,6 +53,11 @@ const Login = (props) => {
             <Button className="Polaris-Button" primary onClick={userLogin}>
               Submit
             </Button>
+          )}
+          {status === false && errorMsg !== "" ? (
+            <div className={classes.errorDiv}>{errorMsg}</div>
+          ) : (
+            ""
           )}
         </FormLayout>
       </div>
