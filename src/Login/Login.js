@@ -41,7 +41,7 @@ const Login = (props) => {
             onChange={(e) => setUsername(e)}
           />
           <TextField
-            type="text"
+            type="password"
             label="Password"
             value={pass}
             onChange={(e) => setPass(e)}

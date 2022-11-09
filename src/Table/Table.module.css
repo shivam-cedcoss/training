@@ -1,3 +1,7 @@
 .product_image{
-    width: 15vw;
+    width: 9vh;
+    height: 9vh;
+}
+.spinner{
+    text-align: center;
 }

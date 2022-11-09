@@ -3,14 +3,25 @@ import { Table } from "antd";
 import React, { useEffect, useState } from "react";
 import Fetch from "../useFetch";
 import classes from "./Table.module.css";
+import { Spin } from "antd";
 const columns = [
   {
     title: <Heading>Image</Heading>,
     dataIndex: "image",
-    render: (record) => (
-      record === "" ? <img src="https://multi-account.sellernext.com/apps/amazon-multi/fe687731855298b4807ee4a49c3bf27c.png" className={classes.product_image} alt="No_image"/>:
-      <img className={classes.product_image} src={record} alt="productImage" />
-    ),
+    render: (record) =>
+      record === "" ? (
+        <img
+          src="https://multi-account.sellernext.com/apps/amazon-multi/fe687731855298b4807ee4a49c3bf27c.png"
+          className={classes.product_image}
+          alt="No_image"
+        />
+      ) : (
+        <img
+          className={classes.product_image}
+          src={record}
+          alt="productImage"
+        />
+      ),
     key: "name",
   },
   {
@@ -20,7 +31,7 @@ const columns = [
     width: "12%",
   },
   {
-    title:<Heading>Product Details</Heading>,
+    title: <Heading>Product Details</Heading>,
     dataIndex: "productDetails",
     render: (record) => (
       <div>
@@ -42,19 +53,20 @@ const columns = [
     key: "address1",
   },
   {
-    title:<Heading>Template</Heading>,
+    title: <Heading>Template</Heading>,
     dataIndex: "template",
     render: (record) => {
       if (record.type === "simple") {
-        return(
-        <div>{record.template === undefined ? "N/A" : record.template}</div>);
+        return (
+          <div>{record.template === undefined ? "N/A" : record.template}</div>
+        );
       }
     },
     width: "30%",
     key: "address2",
   },
   {
-    title:<Heading>Inventory</Heading>,
+    title: <Heading>Inventory</Heading>,
     dataIndex: "inventory",
     render: (record) => (
       <div>
@@ -71,7 +83,7 @@ const columns = [
     key: "address3",
   },
   {
-    title:<Heading>Amazon Status</Heading>,
+    title: <Heading>Amazon Status</Heading>,
     dataIndex: "inventory",
     render: (record) => (
       <div>
@@ -88,7 +100,7 @@ const columns = [
     key: "address4",
   },
   {
-    title:<Heading>Activity</Heading>,
+    title: <Heading>Activity</Heading>,
     dataIndex: "inventory",
     render: (record) => (
       <div>
@@ -121,20 +133,21 @@ const rowSelection = {
     // console.log(selected, selectedRows, changeRows);
   },
 };
-const urls=[
+const urls = [
   "",
   "filter[cif_amazon_multi_inactive][1]=Not Listed&",
   "filter[items.status][1]=Inactive&",
   "filter[items.status][1]=Incomplete&",
   "filter[items.status][1]=Active&",
-  "filter[items.status][1]=Error&"
-]
+  "filter[cif_amazon_multi_activity][1]=error&"
+];
 const ProductTable = (props) => {
-  const { fetchApi, apidata } = Fetch();
+  const { fetchApi, apidata, loading } = Fetch();
 
   useEffect(() => {
-    let url =
-      `https://multi-account.sellernext.com/home/public/connector/product/getRefineProducts?count=50&${urls[props.selected]}productOnly=true&target_marketplace=eyJtYXJrZXRwbGFjZSI6ImFsbCIsInNob3BfaWQiOm51bGx9`;
+    let url = `https://multi-account.sellernext.com/home/public/connector/product/getRefineProducts?count=50&${
+      urls[props.selected]
+    }productOnly=true&target_marketplace=eyJtYXJrZXRwbGFjZSI6ImFsbCIsInNob3BfaWQiOm51bGx9`;
     var options = {
       method: "GET",
       headers: {
@@ -171,13 +184,19 @@ const ProductTable = (props) => {
     });
   return (
     <>
-      <Table
-        columns={columns}
-        rowSelection={{
-          ...rowSelection,
-        }}
-        dataSource={data}
-      />
+      {loading ? (
+        <div className={classes.spinner}>
+          <Spin />
+        </div>
+      ) : (
+        <Table
+          columns={columns}
+          rowSelection={{
+            ...rowSelection,
+          }}
+          dataSource={data}
+        />
+      )}
     </>
   );
 };
