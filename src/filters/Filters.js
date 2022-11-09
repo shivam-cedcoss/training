@@ -4,22 +4,27 @@ import { SearchMinor } from "@shopify/polaris-icons";
 import { useState, useCallback } from "react";
 import classes from "./Filter.module.css";
 const Filters = () => {
-  const [popoverActive, setPopoverActive] = useState(true);
+  const [popoverActive1, setPopoverActive1] = useState(false);
+  const [popoverActive2, setPopoverActive2] = useState(false);
   const [value, setValue] = useState("Jaded Pixel");
 
   const handleChange = useCallback((newValue) => setValue(newValue), []);
-  const togglePopoverActive = useCallback(
-    () => setPopoverActive((popoverActive) => !popoverActive),
+  const togglePopoverActive1 = useCallback(
+    () => setPopoverActive1((popoverActive) => !popoverActive),
+    []
+  );
+  const togglePopoverActive2 = useCallback(
+    () => setPopoverActive2((popoverActive) => !popoverActive),
     []
   );
 
   const activator1 = (
-    <Button onClick={togglePopoverActive} disclosure>
+    <Button onClick={togglePopoverActive1} disclosure>
       More actions
     </Button>
   );
   const activator2 = (
-    <Button onClick={togglePopoverActive} disclosure>
+    <Button onClick={togglePopoverActive2} disclosure>
     Admin actions
     </Button>
   );
@@ -34,10 +39,10 @@ const Filters = () => {
         </div>
         <div>
           <Popover
-            active={popoverActive}
+            active={popoverActive1}
             activator={activator1}
             autofocusTarget="first-node"
-            onClose={togglePopoverActive}
+            onClose={togglePopoverActive1}
           >
             <ActionList
               actionRole="menuitem"
@@ -62,10 +67,10 @@ const Filters = () => {
         </div>
         <div>
           <Popover
-            active={popoverActive}
+            active={popoverActive2}
             activator={activator2}
             autofocusTarget="first-node"
-            onClose={togglePopoverActive}
+            onClose={togglePopoverActive2}
           >
             <ActionList
               actionRole="menuitem"

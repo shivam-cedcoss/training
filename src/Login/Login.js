@@ -30,7 +30,6 @@ const Login = (props) => {
   useEffect(() => {
     props.dispatch(checkLogin(status));
   }, [loading]);
-  // console.log(status,errorMsg)
   return (
     <>
       {props.selector && <Navigate to="/product" replace={true} />}
