@@ -48,13 +48,13 @@
     justify-content: center;
   }
   
-  .continue-with-div > div{
+  .continue-with-div > div {
     border: 1px solid #D3D7CF;
     z-index: 0;
     width: 100%;
   }
   
-  .continue-with-div > p{
+  .continue-with-div > p {
     padding-left: 2%;
     padding-right: 2%;
     position: absolute;
@@ -64,7 +64,7 @@
     color: grey;
   }
   
-  .icons-div{
+  .icons-div {
     margin-bottom: 30px;
   }
   
@@ -79,7 +79,7 @@
     right: 0;
   }
   
-  .bg-img{
+  .bg-img {
     position: relative;
     min-height: 100vh;
     height: 100%;
