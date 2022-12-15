@@ -11,6 +11,7 @@ import {
   TextStyles,
 } from "@cedcommerce/ounce-ui";
 import logo from "../logo.svg";
+import "./Component1.css";
 const Component1 = () => {
   return (
     <>
@@ -21,9 +22,9 @@ const Component1 = () => {
         tabWidth="50"
       >
         <Card>
-          <div className="main-container">
+          <div className="container">
             <FlexLayout direction="vertical" spacing="loose">
-              <div>
+              <div className="sub-container">
                 <div>
                   <div>
                     <svg
@@ -77,10 +78,8 @@ const Component1 = () => {
                     Don't have an account? <a href="#sign">Sign up</a>
                   </h5>
                   <div className="alert-card">
-                    <Card cardType="Bordered">
-                      You are browsing Fuse Demo. Click on the Sign in button to
-                      access the Demo and Documentation.
-                    </Card>
+                    You are browsing <b>Fuse Demo</b>. Click on the Sign in
+                    button to access the Demo and Documentation.
                   </div>
                 </div>
 
@@ -112,11 +111,8 @@ const Component1 = () => {
                   </div>
                 </FormElement>
                 <div className="continue-with-div">
-                  <TextStyles
-                    content="Or continue with"
-                    textcolor="light"
-                    alignment="center"
-                  />
+                  <div></div>
+                  <p>Or continue with</p>
                 </div>
                 <div className="icons-div">
                   <FlexLayout halign="fill">
@@ -202,39 +198,41 @@ const Component1 = () => {
               <img src={logo} alt="community-img" className="App-logo" />
             </Button>
           </div>
-          <FlexLayout direction="none" spacing="loose" valign="start">
-            <h1>Welcome to our community</h1>
-            <p>
-              Fuse helps developers to build organized and well coded dashboards
-              full of beautiful and rich modules. Join us and start building
-              your application today.
-            </p>
-            <div className="community-img-div">
-              <FlexLayout>
-                <OverlappingImages>
-                  <img
-                    src="https://angular-material.fusetheme.com/assets/images/avatars/female-18.jpg"
-                    alt="community-img"
-                  />
-                  <img
-                    src="https://angular-material.fusetheme.com/assets/images/avatars/female-11.jpg"
-                    alt="community-img"
-                  />
-                  <img
-                    src="https://angular-material.fusetheme.com/assets/images/avatars/male-09.jpg"
-                    alt="community-img"
-                  />
-                  <img
-                    src="https://angular-material.fusetheme.com/assets/images/avatars/male-16.jpg"
-                    alt="community-img"
-                  />
-                </OverlappingImages>
-                <div className="join-para">
-                  More than 17k people joined us, it's your turn
-                </div>
-              </FlexLayout>
-            </div>
-          </FlexLayout>
+          <div style={{ maxWidth: "450px" }}>
+            <FlexLayout direction="none" spacing="loose" valign="start">
+              <h1>Welcome to our community</h1>
+              <p className="community_para">
+                Fuse helps developers to build organized and well coded
+                dashboards full of beautiful and rich modules. Join us and start
+                building your application today.
+              </p>
+              <div className="community-img-div">
+                <FlexLayout wrap="noWrap">
+                  <OverlappingImages>
+                    <img
+                      src="https://angular-material.fusetheme.com/assets/images/avatars/female-18.jpg"
+                      alt="community-img"
+                    />
+                    <img
+                      src="https://angular-material.fusetheme.com/assets/images/avatars/female-11.jpg"
+                      alt="community-img"
+                    />
+                    <img
+                      src="https://angular-material.fusetheme.com/assets/images/avatars/male-09.jpg"
+                      alt="community-img"
+                    />
+                    <img
+                      src="https://angular-material.fusetheme.com/assets/images/avatars/male-16.jpg"
+                      alt="community-img"
+                    />
+                  </OverlappingImages>
+                  <div className="join-para">
+                    More than 17k people joined us, it's your turn
+                  </div>
+                </FlexLayout>
+              </div>
+            </FlexLayout>
+          </div>
         </div>
       </FlexLayout>
     </>

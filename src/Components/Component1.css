@@ -1,0 +1,141 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding:50px 50px 0% 100px;
+  }
+  
+  .sub-container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .signin-heading {
+    padding-top: 15px;
+    padding-bottom: 2px;
+    font-weight: bolder;
+  }
+  
+  h5 {
+    font-weight: bold;
+    padding-bottom: 25px;
+  }
+  
+  .alert-card {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    padding: 5%;
+    border: 1px solid #0275d8;
+    color: #4F46E5;
+    background-color: #EFF6FF;
+    border-radius: 5px;
+  }
+  
+  .forgot-password-div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .signin-btn {
+    padding-bottom: 30px;
+    border-radius: 200px;
+  }
+  
+  .continue-with-div {
+    padding-bottom: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .continue-with-div > div{
+    border: 1px solid #D3D7CF;
+    z-index: 0;
+    width: 100%;
+  }
+  
+  .continue-with-div > p{
+    padding-left: 2%;
+    padding-right: 2%;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    top: -10px;
+    color: grey;
+  }
+  
+  .icons-div{
+    margin-bottom: 30px;
+  }
+  
+  .join-para {
+    color: thistle;
+  }
+  
+  .setting-btn-div {
+    position: absolute;
+    position: fixed;
+    top: 210px;
+    right: 0;
+  }
+  
+  .bg-img{
+    position: relative;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E293B;
+  }
+  
+  .bg-img h1 {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 45px;
+    padding-left: 40px;
+  }
+  
+  .bg-img p {
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .bg-img svg:first-child {
+    position: absolute;
+  }
+  
+  .bg-img svg:nth-child(2) {
+    position: absolute;
+    top:0;
+    right: 0;
+  }
+  
+  .App-logo {
+    pointer-events: none;
+  }
+  
+  .community-img-div {
+    padding-left: 40px;
+  }
+
+  .community_para {
+    color: thistle;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 5s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
