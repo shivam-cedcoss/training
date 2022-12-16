@@ -1,0 +1,88 @@
+export const data = [
+  {
+    person: "GrandFather",
+    name: "sumesh",
+    age: 70,
+    address: "Lucknow",
+    hasChild: true,
+    open: false,
+    children: [
+      {
+        person: "father",
+        name: "ramesh",
+        age: 38,
+        address: "Lucknow",
+        hasChild: true,
+        open: false,
+        children: [
+          {
+            person: "child",
+            name: "akash",
+            age: 18,
+            address: "Lucknow",
+            hasChild: false,
+            open: false,
+            children: [],
+          },
+        ],
+      },
+      {
+        person: "father",
+        name: "homesh",
+        age: 33,
+        address: "Lucknow",
+        hasChild: true,
+        open: false,
+        children: [
+          {
+            person: "child",
+            name: "sumit",
+            age: 20,
+            address: "Lucknow",
+            hasChild: false,
+            open: false,
+            children: [],
+          },
+        ],
+      },
+      {
+        person: "father",
+        name: "lokesh",
+        age: 28,
+        address: "Lucknow",
+        hasChild: true,
+        open: false,
+        children: [
+          {
+            person: "child",
+            name: "satyam",
+            age: 21,
+            address: "Lucknow",
+            hasChild: false,
+            open: false,
+            children: [],
+          },
+        ],
+      },
+      {
+        person: "father",
+        name: "suresh",
+        age: 35,
+        address: "Lucknow",
+        hasChild: true,
+        open: false,
+        children: [
+          {
+            person: "child",
+            name: "sujit",
+            age: 22,
+            address: "Lucknow",
+            hasChild: false,
+            open: false,
+            children: [],
+          },
+        ],
+      },
+    ],
+  },
+];
