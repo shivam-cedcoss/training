@@ -29,79 +29,79 @@ const Popover = ({ data, referring, position }) => {
   //Detecting window resize
   const getResizePosition = () => {
     window.addEventListener("resize", resizeWindow);
-    let dimension = btnRef.current.getBoundingClientRect();
-    let popoverDimension = popoverRef.current.getBoundingClientRect();
-    let w = document.documentElement.clientWidth;
-    let h = document.documentElement.clientHeight;
-    if (h - dimension.bottom > popoverDimension.height) {
-      popoverRef.current.style.top = `${dimension.bottom}px`;
-      popoverRef.current.style.left = `${
-        dimension.left - popoverDimension.width
-      }px`;
-    } else if (h - dimension.bottom < popoverDimension.height) {
-      popoverRef.current.style.top = `${
-        dimension.top - popoverDimension.height
-      }px`;
-      popoverRef.current.style.left = `${
-        dimension.left - popoverDimension.width
-      }px`;
-    }
+    resizeWindow();
   };
 
   const resizeWindow = () => {
     var w = document.documentElement.clientWidth;
     var h = document.documentElement.clientHeight;
-    let dimension = btnRef.current.getBoundingClientRect();
+    let btnDimension = btnRef.current.getBoundingClientRect();
     let popoverDimension = popoverRef.current.getBoundingClientRect();
-    if (h - dimension.bottom < popoverDimension.height) {
+    if (
+      h - btnDimension.bottom > popoverDimension.height &&
+      w - btnDimension.right > popoverDimension.width
+    ) {
+      popoverRef.current.style.top = `${btnDimension.bottom}px`;
+      popoverRef.current.style.left = `${btnDimension.left}px`;
+    } else if (
+      h - btnDimension.bottom < popoverDimension.height &&
+      w - btnDimension.right > popoverDimension.width
+    ) {
       popoverRef.current.style.top = `${
-        dimension.top - popoverDimension.height
+        btnDimension.top - popoverDimension.height
       }px`;
+      popoverRef.current.style.left = `${btnDimension.left}px`;
+    } else if (
+      w - btnDimension.right < popoverDimension.width &&
+      h - btnDimension.bottom > popoverDimension.height
+    ) {
+      popoverRef.current.style.top = `${btnDimension.bottom}px`;
       popoverRef.current.style.left = `${
-        dimension.left - popoverDimension.width
+        btnDimension.right - popoverDimension.width
       }px`;
     } else if (
-      h - dimension.bottom > popoverDimension.height ||
-      w - dimension.right < popoverDimension.width
+      w - btnDimension.right < popoverDimension.width &&
+      h - btnDimension.bottom < popoverDimension.height
     ) {
-      popoverRef.current.style.top = `${dimension.bottom}px`;
-      popoverRef.current.style.left = `${
-        dimension.left - popoverDimension.width
-      }px`;
-    } else if (w - dimension.right > popoverDimension.width) {
       popoverRef.current.style.top = `${
-        dimension.top - popoverDimension.height
+        btnDimension.top - popoverDimension.height
       }px`;
-      popoverRef.current.style.left = `${dimension.right}px`;
+      popoverRef.current.style.left = `${
+        btnDimension.right - popoverDimension.width
+      }px`;
     }
   };
 
   // Initial position
   const intialPosition = () => {
-    let dimension = btnRef.current.getBoundingClientRect();
+    let btnDimension = btnRef.current.getBoundingClientRect();
     if (popoverRef.current !== null) {
       if (position === "default") {
-        popoverRef.current.style.top = `${dimension.bottom}px`;
-        popoverRef.current.style.left = `${dimension.left}px`;
+        popoverRef.current.style.top = `${btnDimension.bottom}px`;
+        popoverRef.current.style.left = `${btnDimension.left}px`;
       } else if (position === "Bottom-left") {
-        popoverRef.current.style.top = `${dimension.bottom}px`;
-        popoverRef.current.style.left = `${dimension.left}px`;
+        popoverRef.current.style.top = `${btnDimension.bottom}px`;
+        popoverRef.current.style.left = `${btnDimension.left}px`;
       } else if (position === "Bottom-right") {
-        popoverRef.current.style.top = `${dimension.bottom}px`;
-        popoverRef.current.style.left = `${dimension.left + dimension.width}px`;
-      } else if (position === "Top-left") {
         var popoverDimension = popoverRef.current.getBoundingClientRect();
+        popoverRef.current.style.top = `${btnDimension.bottom}px`;
+        popoverRef.current.style.left = `${
+          btnDimension.right - popoverDimension.width
+        }px`;
+      } else if (position === "Top-left") {
         popoverDimension = popoverRef.current.getBoundingClientRect();
         popoverRef.current.style.top = `${
-          dimension.top - popoverDimension.height
+          btnDimension.top - popoverDimension.height
         }px`;
-        popoverRef.current.style.left = `${dimension.left}px`;
+        popoverRef.current.style.left = `${btnDimension.left}px`;
       } else if (position === "Top-right") {
         popoverDimension = popoverRef.current.getBoundingClientRect();
         popoverRef.current.style.top = `${
-          dimension.top - popoverDimension.height
+          btnDimension.top - popoverDimension.height
         }px`;
-        popoverRef.current.style.left = `${dimension.left + dimension.width}px`;
+        popoverRef.current.style.left = `${
+          btnDimension.right - popoverDimension.width
+        }px`;
       } else if (position === "Auto") {
         getResizePosition();
       }

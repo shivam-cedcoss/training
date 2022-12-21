@@ -7,7 +7,7 @@ const Table = () => {
   const divRef = useRef();
   const fetchPost = async () => {
     let response = await fetch(
-      "https://jsonplaceholder.typicode.com/albums?_limit=20"
+      "https://jsonplaceholder.typicode.com/albums?_limit=10"
     );
     let result = await response.json();
     setPost(result);
@@ -48,7 +48,7 @@ const Table = () => {
         <button
           onClick={callPopoverPosition}
           style={{
-            backgroundColor: popoverPosition === "Bottom-left" ? "#5fdba7" : "",
+            backgroundColor: popoverPosition === "Bottom-left" ? "#008000" : "",
           }}
         >
           Bottom-left
@@ -57,7 +57,7 @@ const Table = () => {
           onClick={callPopoverPosition}
           style={{
             backgroundColor:
-              popoverPosition === "Bottom-right" ? "#5fdba7" : "",
+              popoverPosition === "Bottom-right" ? "#008000" : "",
           }}
         >
           Bottom-right
@@ -65,7 +65,7 @@ const Table = () => {
         <button
           onClick={callPopoverPosition}
           style={{
-            backgroundColor: popoverPosition === "Top-left" ? "#5fdba7" : "",
+            backgroundColor: popoverPosition === "Top-left" ? "#008000" : "",
           }}
         >
           Top-left
@@ -73,7 +73,7 @@ const Table = () => {
         <button
           onClick={callPopoverPosition}
           style={{
-            backgroundColor: popoverPosition === "Top-right" ? "#5fdba7" : "",
+            backgroundColor: popoverPosition === "Top-right" ? "#008000" : "",
           }}
         >
           Top-right
@@ -81,7 +81,7 @@ const Table = () => {
         <button
           onClick={callPopoverPosition}
           style={{
-            backgroundColor: popoverPosition === "Auto" ? "#5fdba7" : "",
+            backgroundColor: popoverPosition === "Auto" ? "#008000" : "",
           }}
         >
           Auto
