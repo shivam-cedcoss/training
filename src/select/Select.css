@@ -19,7 +19,6 @@
 }
 
 .inte__container-select {
-  width: 446px;
   border-radius: 6px;
   padding: 12px 16px 12px 16px;
   border: 1px solid var(--inte-G40);
@@ -29,6 +28,12 @@
   align-items: center;
   padding: 12px 16px;
   gap: 8px;
+  cursor: pointer;
+}
+
+.select-label {
+  color: var(--inte-G800);
+  line-height: 20px;
 }
 
 .inte__container-select > div {
@@ -42,11 +47,24 @@
   outline: none;
 }
 
+.inte__container-select-loader > svg {
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .inte__container-select-icons {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .inte__container-select-icons > span {
@@ -61,10 +79,66 @@
 }
 
 .inte__container-search-text > span {
-  color: #616771;
+  color: var(--inte-G300);
 }
 
-label {
-  line-height: 20px;
-  color: #1c2433;
+.inte__container-select-focus {
+  background-color: var(--inte-P40);
+  border: 1px solid var(--inte-P900);
+  box-shadow: 0px 0px 0px 2px #e7e1f6;
+}
+
+input[type="text"] {
+  font-size: 16px;
+  color: var(--inte-G800);
+  font-weight: 400px;
+  background-color: transparent;
+}
+
+.inte__container-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  border: 1px solid var(--inte-G40);
+  border-radius: 6px;
+}
+
+.inte__container-dropdown-items {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 12px 8px;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.inte__container-dropdown-active {
+  background-color: var(--inte-P30);
+}
+
+.inte__container-dropdown-items-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--inte-G800);
+}
+
+.inte__container-dropdown-items:hover {
+  background-color: var(--inte-P20);
+}
+
+.icon-up {
+  transform: rotate(180deg);
+  transition: 300ms all linear;
+}
+
+.icon-down {
+  transition: 300ms all linear;
+}
+
+.inte__container-dropdown-items-hidden {
+  visibility: hidden;
 }
