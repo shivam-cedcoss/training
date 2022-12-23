@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState, useRef } from 'react';
 import { ChevronDown } from 'react-feather';
 import './Select.css';
 import '../assests/css/globalCss/style.css';
 import { Svgs } from '../assests/icons/Svgs';
-
+import MultiTag from './MultiTag';
 interface ISelect {
   label?: string | null
   isSearchable?: boolean
@@ -11,101 +11,109 @@ interface ISelect {
   options?: Array<ObjI>
   loading?: boolean
   withDescription?: boolean
+  multiSelect?: boolean
 }
 
-interface ObjI extends GroupI {
+export interface ObjI extends GroupI {
   label: string | React.ReactNode;
   value: string;
   description?: string
-}
-
-interface Itype {
-  value?: string | null,
-  label?: string | null,
-  description?: string | null,
 }
 
 interface GroupI {
   group?: ObjI[];
 }
 
-const Select = ({ label, searchHelpText, isSearchable, options, loading, withDescription }: ISelect) => {
+const Select = ({ label, searchHelpText, isSearchable, options, loading, withDescription, multiSelect }: ISelect) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selecttext, setSelectText] = useState<string | null>(null);
-  const [matchedOptions, setMatchedOptions] = useState<ObjI[]>([])
+  const [selecttext, setSelectText] = useState<string[]>([]);
+  const [userInputText,setUserInputText]=useState("");
+  const [matchedOptions, setMatchedOptions] = useState(options)
   const getSelectedOption = (e: any) => {
-    setSelectText(e)
-  }
-  const searchFromDropdown = (e: ChangeEvent<HTMLInputElement>) => {
-    setSelectText(e.target.value);
+    !multiSelect && setSelectText([e])
+    multiSelect && setSelectText([...selecttext, e])
   }
 
+  const ContainerRef = useRef<HTMLDivElement>(null);
+  // Check Outside click
+  const handleClickOutside = (event: any) => {
+    if (ContainerRef.current && !ContainerRef.current.contains(event.target)) {
+      setShowDropdown(false)
+    }
+  };
   useEffect(() => {
-    let a = selecttext?.toLowerCase();
-    // setItems([...items, newData])
-    options?.map((i, index) => {
-      // const newData = {
-      //   value: i.value,
-      //   label: i.label,
-      //   description: i.description
-      // }
-      if (typeof i.label === "string" && a !== undefined) {
-        if (i.label.toLowerCase()?.includes(a)) {
-          console.log(i)
-          setMatchedOptions([i])
-        }
-      }
-    })
-    // options?.map((item, index) => {
-    //   if (typeof item.label === "string") {
-    //     let b = item.label.toLowerCase();
-    //     if (b?.substring(0, index) === e.target.value) {
-    //       console.log(item)
-    //     }
-    //   }
-    // });
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [])
+  const searchFromDropdown = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedText = e.target.value;
+    setUserInputText(selectedText)
+    // setSelectText([selectedText]);
+  }
+  function resizeInput(this: any) {
+    this.style.width = this.value.length + "ch";
+  }
+  useEffect(() => {
+    var input = document.querySelector("input");
+    input?.addEventListener("input", resizeInput);
+    resizeInput.call(input);
+  }, [])
 
+  // Dropdown menu
+  const Dropdownmenu = () => {
+    return (
+      <div className="inte__container-dropdown" ref={ContainerRef}>
+        {matchedOptions?.map((item, index) => {
+          return (
+            <div key={index} className={selecttext === item.label ? "inte__container-dropdown-items inte__container-dropdown-active" : "inte__container-dropdown-items"} onClick={() => getSelectedOption(item.label)}>
+              <div className={selecttext[index] === item.label ? "" : "inte__container-dropdown-items-hidden"}>{Svgs.tickIcon}</div>
+              <div className="inte__container-dropdown-items-content">
+                <div>{item.label}</div>
+                {withDescription && <div>{item.description}</div>}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+  useEffect(() => {
+    // let userSearchInput = selecttext?.toLowerCase();
+    // if (userSearchInput !== undefined) {
+    //   let temp: any = []
+    //   options?.map((i, index) => {
+    //     if (typeof i.label === "string" && userSearchInput !== undefined) {
+    //       if (i.label.toLowerCase()?.includes(userSearchInput)) {
+    //         temp.push(i)
+    //       }
+    //     }
+    //   })
+    //   setMatchedOptions([...temp])
+    // }
+    // else setMatchedOptions(options)
   }, [selecttext])
-  console.log(matchedOptions.length)
+
+  const removeTags = (data: any) => {
+    const newLabel = selecttext.filter((ele) => ele !== data)
+    setSelectText([...newLabel])
+  }
   return (
     <>
       <div className="inte__container">
         {label && <label className="pb-8 select-label" htmlFor="select-input">{label}</label>}
-        <div className={showDropdown ? "inte__container-select inte__container-select-focus" : "inte__container-select"} onClick={() => setShowDropdown(!showDropdown)}>
-          <div>{isSearchable ? <input type="text" id="select-input" placeholder="Select" onChange={(e) => searchFromDropdown(e)} value={selecttext !== null ? selecttext : ""} /> : "Select"}</div>
+        <div className={showDropdown ? "inte__container-select inte__container-select-focus" : "inte__container-select"} >
+          <div className="inte__container-select-tag" onClick={() => setShowDropdown(true)}>{multiSelect && <MultiTag selectOption={selecttext} removeTags1={removeTags} />}{isSearchable ? <input type="text" id="select-input" placeholder="Select" onChange={(e) => searchFromDropdown(e)} value={multiSelect ? userInputText : ""} /> : "Select"}</div>
           <div className="inte__container-select-icons">
-            {loading ? <span style={{ border: "none" }} className="inte__container-select-loader">{Svgs.spinnerIcon}</span> : <button style={{ display: selecttext !== null ? "inline-block" : "none" }} onClick={() => setSelectText(null)}>
+            {loading ? <span style={{ border: "none" }} className="inte__container-select-loader">{Svgs.spinnerIcon}</span> : <button style={{ display: selecttext !== null ? "inline-block" : "none" }} onClick={() => setSelectText([])}>
               {Svgs.CrossIcon}
             </button>}
-
             <span></span>
-            <ChevronDown className={showDropdown ? "icon-up" : "icon-down"} />
+            <button onClick={() => setShowDropdown(!showDropdown)}><ChevronDown onClick={() => setShowDropdown(!showDropdown)} className={showDropdown ? "icon-up" : "icon-down"} /></button>
           </div>
         </div>
-        {showDropdown && <div className="inte__container-dropdown">
-          {matchedOptions.length === 0 ? options?.map((item, index) => {
-            return (
-              <div key={index} className={selecttext === item.label ? "inte__container-dropdown-items inte__container-dropdown-active" : "inte__container-dropdown-items"} onClick={() => getSelectedOption(item.label)}>
-                <div className={selecttext === item.label ? "" : "inte__container-dropdown-items-hidden"}>{Svgs.tickIcon}</div>
-                <div className="inte__container-dropdown-items-content">
-                  <div>{item.label}</div>
-                  {withDescription && <div>{item.description}</div>}
-                </div>
-              </div>
-            )
-          }) : matchedOptions?.map((item, index) => {
-            return (
-              <div key={index} className={selecttext === item.label ? "inte__container-dropdown-items inte__container-dropdown-active" : "inte__container-dropdown-items"} onClick={() => getSelectedOption(item.label)}>
-                <div className={selecttext === item.label ? "" : "inte__container-dropdown-items-hidden"}>{Svgs.tickIcon}</div>
-                <div className="inte__container-dropdown-items-content">
-                  <div>{item.label}</div>
-                  {withDescription && <div>{item.description}</div>}
-                </div>
-              </div>
-            )
-          })}
-        </div>}
-
+        {showDropdown && <Dropdownmenu />}
         {searchHelpText && <div className="inte__container-search-text pt-8 ft-16"><span>{Svgs.SearchIcon}
         </span><span className="pl-8">Please enter the text</span></div>}
       </div>

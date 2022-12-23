@@ -29,6 +29,10 @@
   padding: 12px 16px;
   gap: 8px;
   cursor: pointer;
+  /*  */
+  max-width: 550px;
+  margin: 10px auto;
+  /*  */
 }
 
 .select-label {
@@ -102,6 +106,12 @@ input[type="text"] {
   padding: 12px;
   border: 1px solid var(--inte-G40);
   border-radius: 6px;
+  /*  */
+  max-width: 550px;
+  margin: 0 auto;
+  overflow: auto;
+  max-height: 300px;
+  /*  */
 }
 
 .inte__container-dropdown-items {
@@ -111,6 +121,7 @@ input[type="text"] {
   padding: 12px 8px;
   gap: 8px;
   align-self: stretch;
+  cursor: pointer;
 }
 
 .inte__container-dropdown-active {
@@ -141,4 +152,15 @@ input[type="text"] {
 
 .inte__container-dropdown-items-hidden {
   visibility: hidden;
+}
+
+.inte__container-select-tag {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+input {
+  border: 1px solid red !important;
 }

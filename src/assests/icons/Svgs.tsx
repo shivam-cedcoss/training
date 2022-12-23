@@ -13,5 +13,11 @@ export const Svgs = {
         <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14.6663 1L5.49967 10.1667L1.33301 6" stroke="#413BBC" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
+    ),
+    cutIcon: (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L4 12" stroke="#8C9098" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 4L12 12" stroke="#8C9098" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
     )
 }

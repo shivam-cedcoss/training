@@ -1,0 +1,23 @@
+.inte__multitag-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 2px 8px;
+  gap: 4px;
+  background: var(--inte-G40);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.inte__multitag-container > div {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--inte-G800);
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
