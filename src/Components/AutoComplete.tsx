@@ -2,9 +2,12 @@ import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import './AutoComplete.css';
 import '../GlobalCss/style.css';
 import { Search } from 'react-feather';
+import { createPortal } from 'react-dom';
 
 interface Idata {
-  options?: Array<objI>
+  options?: Array<objI>,
+  label?: string,
+  helpText?: string
 }
 
 interface objI {
@@ -15,10 +18,12 @@ interface objI {
   popoverContent?: ReactNode | string | number
 }
 
-const AutoComplete = ({ options }: Idata) => {
+const AutoComplete = ({ options, label, helpText }: Idata) => {
   const [inputText, setInputText] = useState<string>('');
   const [matchedData, setMatchedData] = useState<objI[] | undefined>([]);
-  const [flag, setFlag] = useState(false)
+  const [flag, setFlag] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false)
   const divRef = useRef<HTMLDivElement>(null);
 
   // Getting input from user
@@ -54,6 +59,7 @@ const AutoComplete = ({ options }: Idata) => {
   const clickOutside = (e: any) => {
     if (divRef.current && !divRef.current.contains(e.target)) {
       setFlag(false)
+      setActive(false)
     }
   }
 
@@ -68,6 +74,7 @@ const AutoComplete = ({ options }: Idata) => {
   // Clicking on input box
   const clickInput = () => {
     inputText.length !== 0 && setFlag(!flag)
+    setActive(!active)
   }
 
   // Highlighting the current input
@@ -94,7 +101,12 @@ const AutoComplete = ({ options }: Idata) => {
     }
   }
 
-  const showPopover = (data: React.ReactNode) => {
+  const showPopover = () => {
+    setShow(true);
+  }
+
+  const hidePopover = () => {
+    setShow(false)
   }
 
   // Remove text on button click
@@ -102,16 +114,34 @@ const AutoComplete = ({ options }: Idata) => {
     setFlag(false)
     setInputText('');
     setMatchedData([]);
+    setActive(false)
   }
 
+
+  // const Modal = createPortal(
+  //   <div style={theme} ref={popoverRef} className="popover__container-popover">
+  //     {data}
+  //   </div>,
+  //   document.body
+  // );
+  // Displaying popover
+  const popover = (index: number, data: React.ReactNode) => {
+    return (
+      data
+    )
+  }
+
+
+  // Renders when matched data found
   const DataList = () => {
     return (
       <ul className="inte__AutoComplete--list">
         {matchedData?.map((i, index) => {
           return (
-            <li className="inte__AutoComplete--list-item" key={index} onClick={() => clickedItem(i.label)} onMouseEnter={() => showPopover(i.popoverContent)}>
+            <li className="inte__AutoComplete--list-item" key={index} onClick={() => clickedItem(i.label)} onMouseEnter={() => showPopover()} onMouseLeave={() => hidePopover()}>
               {highlightText(i.value, inputText)}
               {i.lname && <div style={{ color: "#9f9f9f" }}>{i.lname}</div>}
+              {show && i.popoverContent && popover(index, i.popoverContent)}
               {/* {i.popoverContent && <span className="inte__Autocomplete-popover">{index}{i.popoverContent}</span>} */}
             </li>
           )
@@ -119,7 +149,7 @@ const AutoComplete = ({ options }: Idata) => {
       </ul>
     )
   }
-
+  // Render's when no data found
   const NoDataFound = () => {
     return (
       <ul className="inte__Autocomplete--nodata">
@@ -129,16 +159,18 @@ const AutoComplete = ({ options }: Idata) => {
       </ul>
     )
   }
-
   return (
     <div className='inte__AutoComplete--Wrapper' ref={divRef}>
-      <div>
-        <input className="inte__AutoComplete--input" type="text" placeholder="Enter Text" onChange={(e) => getUserInput(e)} value={inputText} onClick={() => clickInput()} />
-        <button className="inte__AutoComplete--cut-btn" onClick={cutInputText}>
+      {label && <label htmlFor="input">{label}</label>}
+      <div className={active ? "inte__AutoComplete--input-div active" : 'inte__AutoComplete--input-div'}>
+        <Search size={18} />
+        <input className="inte__AutoComplete--input" type="text" placeholder="Enter Text" onChange={(e) => getUserInput(e)} value={inputText} onClick={() => clickInput()} id="input"/>
+        {inputText !== "" && <button className="inte__AutoComplete--cut-btn" onClick={cutInputText}>
           <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="cross-icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
-        </button>
+        </button>}
       </div>
+      {helpText && !flag && <p className="inte__AutoComplete--helptext">{helpText}</p>}
       {matchedData?.length !== 0 ? flag && <DataList /> : flag && <NoDataFound />}
     </div>
   )

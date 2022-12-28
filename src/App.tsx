@@ -1,6 +1,4 @@
-import React from 'react';
 import AutoComplete from './Components/AutoComplete';
-
 function App() {
 
   const options = [
@@ -11,7 +9,7 @@ function App() {
       id: "popover0",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>popover0</p>
       </div>)
     },
     {
@@ -25,7 +23,7 @@ function App() {
       id: "popover2",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>popover2</p>
       </div>)
     },
     {
@@ -46,7 +44,7 @@ function App() {
       id: "popover5",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>popover5</p>
       </div>)
     },
     {
@@ -80,7 +78,7 @@ function App() {
       id: "popover9",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>popover9</p>
       </div>)
     },
     {
@@ -130,7 +128,7 @@ function App() {
       value: "Niel",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>Niel</p>
       </div>)
     },
     {
@@ -154,7 +152,7 @@ function App() {
       value: "Truman",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>Truman</p>
       </div>)
     },
     {
@@ -182,7 +180,7 @@ function App() {
       value: "Zorine",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+        <p>Zorine</p>
       </div>)
     },
     {
@@ -202,7 +200,7 @@ function App() {
       value: "Pepillo",
     },
   ];
-  return <AutoComplete options={options} />
+  return <AutoComplete options={options} label="Name" helpText="Kindly Search your required Item"/>
 }
 
 export default App;

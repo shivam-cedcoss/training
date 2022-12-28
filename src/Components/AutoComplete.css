@@ -4,7 +4,11 @@
   margin-top: 10px;
 }
 
-.inte__AutoComplete--Wrapper > div {
+.inte__AutoComplete--helptext {
+  color: #8c9098;
+}
+
+.inte__AutoComplete--input-div {
   display: flex;
   align-items: center;
   border: 0.1rem solid var(--inte-G50);
@@ -12,7 +16,7 @@
   border-radius: 6px;
 }
 
-.inte__AutoComplete--Wrapper > div:hover {
+.active {
   border: 0.1rem solid var(--inte-P900);
 }
 
@@ -27,6 +31,11 @@
   width: 100%;
   border: none;
   outline: none;
+  padding: 5px;
+}
+
+.inte__AutoComplete--input[type="text"] {
+  font-size: 16px;
 }
 
 ul {
@@ -58,7 +67,7 @@ li {
   word-wrap: break-word;
   padding: 5px;
   font-size: 14px;
-  color: var(--inte-G450)!important;
+  color: var(--inte-G450) !important;
 }
 
 .inte__AutoComplete--list-item {
@@ -82,7 +91,7 @@ span.inte__Autocomplete-popover {
 }
 
 .cross-icon {
-  background: silver;
+  background: #8c9098;
   border-radius: 50%;
   color: white;
   height: 18px;
