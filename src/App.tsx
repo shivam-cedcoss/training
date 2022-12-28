@@ -9,23 +9,24 @@ function App() {
       value: "Barbara-anne Barbara-anne Barbara-anne Barbara-anne",
       lname: "hello",
       id: "popover0",
-      // popoverContent:(<div>
-      //   <h1>Heading</h1>
-      //   <img src="" alt=""/>
-      // </div>)
-
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Jahaj Jahaaj jahaajj",
       value: "Jahaj Jahaaj jahaajj",
       id: "popover1",
-
     },
     {
       label: "Debi",
       value: "Debi",
       id: "popover2",
-
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Debi one",
@@ -43,6 +44,10 @@ function App() {
       label: "Cristin",
       value: "Cristin",
       id: "popover5",
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Auto Autox",
@@ -73,6 +78,10 @@ function App() {
       label: "Lea",
       value: "Lea",
       id: "popover9",
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Michel",
@@ -119,6 +128,10 @@ function App() {
     {
       label: "Niel",
       value: "Niel",
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Heddi",
@@ -139,6 +152,10 @@ function App() {
     {
       label: "Truman",
       value: "Truman",
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Merill",
@@ -163,6 +180,10 @@ function App() {
     {
       label: "Zorine",
       value: "Zorine",
+      popoverContent: (<div>
+        <h1>Heading</h1>
+        <p>Barbara-anne Barbara-anne Barbara-anne Barbara-anne</p>
+      </div>)
     },
     {
       label: "Odele",
