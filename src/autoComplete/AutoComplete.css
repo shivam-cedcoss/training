@@ -52,6 +52,7 @@ li {
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
   max-height: 250px;
   overflow: auto;
+  z-index: 9;
 }
 
 .inte__Autocomplete--nodata {
@@ -74,16 +75,19 @@ li {
   display: flex;
   cursor: pointer;
   padding: 10px;
-  position: relative;
   border-radius: 8px;
+  /* background-color: red; */
+  /* margin-bottom: 10px; */
 }
 
-span.inte__Autocomplete-popover {
-  position: absolute;
-  background: silver;
-  width: 150px;
-  right: -162px;
-  top: 0;
+.inte__Autocomplete-popover {
+  max-width: 200px;
+  min-height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  position: fixed;
+  z-index: 99;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .inte__AutoComplete--list-item:hover {

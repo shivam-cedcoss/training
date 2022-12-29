@@ -1,4 +1,4 @@
-import AutoComplete from './Components/AutoComplete';
+import AutoComplete from './autoComplete/AutoComplete';
 function App() {
 
   const options = [
