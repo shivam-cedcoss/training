@@ -1,3 +1,7 @@
+.silver-chalice {
+  color: #9f9f9f;
+}
+
 .inte__AutoComplete--Wrapper {
   max-width: 350px;
   margin: 0 auto;
@@ -38,16 +42,8 @@
   font-size: 16px;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style-type: none;
-}
-
 .inte__AutoComplete--list {
+  margin: 0;
   padding: 10px;
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
   max-height: 250px;
@@ -76,18 +72,23 @@ li {
   cursor: pointer;
   padding: 10px;
   border-radius: 8px;
-  /* background-color: red; */
-  /* margin-bottom: 10px; */
+  list-style-type: none;
 }
 
 .inte__Autocomplete-popover {
-  max-width: 200px;
-  min-height: 100px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   position: fixed;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   z-index: 99;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 6px;
+  overflow: hidden auto;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: calc(100% - 32px);
+  max-height: calc(100% - 32px);
+  outline: 0px;
 }
 
 .inte__AutoComplete--list-item:hover {
