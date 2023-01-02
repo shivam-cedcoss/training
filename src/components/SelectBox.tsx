@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { svgs } from './assetsArray'
+import React, { useEffect, useRef, useState } from 'react';
+import './Select.css';
+import '../assests/CommonStyles/Style.css';
+import { svgs } from '../assests/icons/assetsArray'
 import Tag from './Tag';
 
 interface SelectI {
@@ -47,7 +49,7 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
   const selectDropdownCard = (opts = options) => {
     return <ul className='inte-select-box__dropdown-card'>
       {
-        opts?.map((item, index) => {
+        opts?.length !== 0 ? opts?.map((item, index) => {
           const visible = selectedOptions.includes(`${item.label}.${item.value}.${index}`) ? true : false
           return <li key={`${item.label}.${item.value}.${index}`} className={`inte-select-box__dropdown-card__item ${visible ? 'inte-select-box__dropdown-card__item--active' : ''}`} onClick={() => dropdownItemClickHandler(item, index)}>
             <span style={{ visibility: visible ? 'visible' : 'hidden' }}>{svgs.check}</span>
@@ -59,7 +61,7 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
             </div>
           </li>
         }
-        )
+        ) : <li className='inte-select-box_no-options'>No Options Found!</li>
       }
     </ul>
   }
@@ -68,7 +70,6 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
     return <ul className='inte-select-box__dropdown-group-card'>
       {
         opts?.map((item, index) => {
-          // console.log(item)
           return <li key={`${item.label}.${item.value}.${index}`}>
             <ul className="inte-select__list">
               <h3 className="inte-select-box__Heading">{item.label}</h3>
@@ -76,7 +77,8 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
                 const visible = selectedOptions.includes(`${i.label}.${i.value}.${index}`) ? true : false
                 return (
                   <li key={index} className={`inte-select-box__dropdown-card__item ${visible ? 'inte-select-box__dropdown-card__item--active' : ''}`} onClick={() => dropdownItemClickHandler(i, index)}>
-                    <span className="inte-select-box__dropdown-check-icon" style={{ visibility: visible ? "visible" : "hidden" }}>{svgs.check}</span>
+                    {visible && <span className="inte-select-box__dropdown-check-icon" style={{ visibility: visible ? "visible" : "hidden" }}>{svgs.check}</span>}
+
                     <h3 className="inte__text--label">{i.label}</h3>
                   </li>
 
@@ -100,6 +102,7 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
     else if (!selectedOptions.length) {
       setDropdownActive(prev => !prev)
     }
+    inputRef.current?.focus();
   }
 
   const tagClickHandler = (data: string) => {
@@ -118,7 +121,6 @@ const SelectBox = ({ helperText, label, options, multi, searchable, groupData, d
         return item.label.toLowerCase().includes(inputValue.toLowerCase())
       })
       setOptionsToShow(newOpts)
-      console.log(newOpts)
     }
     else setOptionsToShow(options)
   }, [inputValue])

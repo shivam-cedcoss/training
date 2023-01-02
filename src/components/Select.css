@@ -1,0 +1,238 @@
+svg,
+button {
+  cursor: pointer;
+}
+
+.App {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.inte-select-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.inte-select-box__label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  color: var(--inte-G800);
+}
+
+.inte-select-box__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 8px;
+  border: 1px solid var(--inte-G40);
+  border-radius: 6px;
+  position: relative;
+  cursor: default;
+}
+
+.inte-select-box__body--focus {
+  background: var(--inte-P20);
+  border: 1px solid var(--inte-P900);
+  box-shadow: 0px 0px 0px 2px var(--inte-P40);
+}
+
+.inte-select-box__textarea {
+  flex: 1 1 0%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+}
+
+.inte-select-box__input-wrapper {
+  flex: 1 1 auto;
+  min-width: 2px;
+}
+
+.inte-select-box__input {
+  min-width: 1px;
+  border: none;
+  width: min-content;
+  padding: 0;
+  outline: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--inte-G800);
+  background: transparent;
+}
+
+.inte-select-box--selected-val {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--inte-G800);
+}
+
+.inte-select-box__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.inte-select-box__helperText {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.inte-select-box__helperText p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--inte-G300);
+  margin: 0;
+}
+
+.line {
+  height: 22px;
+  border: 0.5px solid var(--inte-G40);
+  margin-left: 2px;
+}
+
+.inte-select-box__dropdown-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  background: var(--inte-G0);
+  border: 1px solid var(--inte-G40);
+  border-radius: 6px;
+  max-height: 300px;
+  overflow: auto;
+  align-items: stretch;
+}
+.inte-select-box__dropdown-group-card {
+  padding: 12px;
+  background: var(--inte-G0);
+  border: 1px solid var(--inte-G40);
+  border-radius: 6px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.inte-select-box__dropdown-card__item {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 6px;
+  align-self: stretch;
+}
+
+.inte-select-box__dropdown-card__item:hover {
+  background: var(--inte-P20);
+}
+
+.inte-select-box__dropdown-card__item--active {
+  background: var(--inte-P30) !important;
+}
+
+.inte-select-box__dropdown-card__item--label-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.inte-select-box__dropdown-card__item--label-desc > p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--inte-G800);
+  padding: 0;
+  margin: 0;
+}
+
+.inte-select-box__dropdown-card__item--label-desc > p:nth-child(2) {
+  color: var(--inte-G450);
+}
+
+/* tag css */
+.inte-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px;
+  gap: 4px;
+  background: var(--inte-G40);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 16px;
+  overflow: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.inte-select-box__Heading {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: var(--inte-G90) !important;
+  cursor: default;
+}
+
+.inte-select__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.inte-select__list > li {
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--inte-G800);
+  align-self: stretch;
+}
+
+.inte-select__list > li:hover {
+  background-color: var(--inte-P20);
+}
+
+.inte__text--label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--inte-G800);
+}
+
+.inte-select-box_no-options {
+  font-size: 16px;
+  text-align: center;
+  color: rgb(102, 102, 102);
+}

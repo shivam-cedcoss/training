@@ -1,5 +1,5 @@
 import React from 'react'
-import { svgs } from './assetsArray'
+import { svgs } from '../assests/icons/assetsArray'
 
 interface TagI {
   name:string;
