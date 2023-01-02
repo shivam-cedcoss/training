@@ -9,7 +9,7 @@ function App() {
       id: "popover0",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>popover0</p>
+        <p>Barbara-anne</p>
       </div>)
     },
     {
@@ -23,7 +23,7 @@ function App() {
       id: "popover2",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>popover2</p>
+        <p>Debi</p>
       </div>)
     },
     {
@@ -78,7 +78,7 @@ function App() {
       id: "popover9",
       popoverContent: (<div>
         <h1>Heading</h1>
-        <p>popover9</p>
+        <p>Lea</p>
       </div>)
     },
     {
